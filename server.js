@@ -18,8 +18,8 @@ mongoose.connect(mongoURI)
 .catch(err => console.error('❌ MongoDB Verbindungsfehler:', err));
 
 // Routes
-app.use('/api', require('./routes/events'));
-app.use('/api', require('./routes/participants'));
+app.use('/api', require('./routes/events'));           // ✅ Events Route
+app.use('/api', require('./routes/participants'));     // ✅ Participants Route
 
 // Health Check Endpoint
 app.get('/api/health', (req, res) => {
