@@ -2,14 +2,27 @@ name: Keep Render Alive
 
 on:
   schedule:
+    # Läuft alle 14 Minuten - hält Render Service wach
     - cron: '*/14 * * * *'
+  
+  # Optional: Erlaubt manuelles Ausführen
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Render API
+      - name: Ping Render Health Endpoint
         run: |
           echo "🔄 Pinging Render API..."
-          curl -s -o /dev/null -w "Status: %{http_code}\n" https://jamaat-kalender.onrender.com/api/health
-          echo "✅ Ping completed at $(date)"
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" "https://jamaat-kalender.onrender.com/api/health")
+          echo "Response Code: $response_code"
+          
+          if [ "$response_code" -eq 200 ]; then
+            echo "✅ Ping successful - Service is alive!"
+          else
+            echo "⚠️ Ping response: $response_code"
+            echo "ℹ️ Service might be starting up..."
+          fi
+          
+          echo "✅ Ping completed at $(date +'%Y-%m-%d %H:%M:%S')"
