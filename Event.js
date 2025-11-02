@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');  // 🔥 DIESE ZEILE FEHLT!
+
 const eventSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -53,3 +55,5 @@ const eventSchema = new mongoose.Schema({
 eventSchema.index({ date: 1 });
 
 module.exports = mongoose.model('Event', eventSchema);
+module.exports = mongoose.model('Event', eventSchema);
+
