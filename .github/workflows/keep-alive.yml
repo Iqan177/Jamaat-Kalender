@@ -1,0 +1,15 @@
+name: Keep Render Alive
+
+on:
+  schedule:
+    - cron: '*/14 * * * *'
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render API
+        run: |
+          echo "🔄 Pinging Render API..."
+          curl -s -o /dev/null -w "Status: %{http_code}\n" https://jamaat-kalender.onrender.com/api/health
+          echo "✅ Ping completed at $(date)"
