@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const eventSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -49,7 +51,6 @@ const eventSchema = new mongoose.Schema({
     }
 });
 
-// Index für bessere Performance bei Datumsabfragen
 eventSchema.index({ date: 1 });
 
 module.exports = mongoose.model('Event', eventSchema);
