@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');  // 🔥 DIESE ZEILE HINZUFÜGEN!
+const mongoose = require('mongoose');
 
 const participantSchema = new mongoose.Schema({
   eventId: {
