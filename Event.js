@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');  // 🔥 DIESE ZEILE FEHLT!
+const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
     title: {
@@ -51,9 +51,6 @@ const eventSchema = new mongoose.Schema({
     }
 });
 
-// Index für bessere Performance bei Datumsabfragen
 eventSchema.index({ date: 1 });
 
 module.exports = mongoose.model('Event', eventSchema);
-module.exports = mongoose.model('Event', eventSchema);
-
